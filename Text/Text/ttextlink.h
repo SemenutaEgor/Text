@@ -6,7 +6,7 @@ public:
 	TTextLink *pNext, *pDown;
 	char str[81];
 	//Конструктор
-	TTextLink(char *c = NULL, TTextLink *pn = NULL, TTextLink *pd = NULL) {
+	TTextLink(const char *c = NULL, TTextLink *pn = NULL, TTextLink *pd = NULL) {
 		pNext = pn;
 		pDown = pd;
 		if (c == NULL)
