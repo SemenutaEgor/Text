@@ -12,6 +12,6 @@ public:
 		if (c == NULL)
 			str[0] = '\0';
 		else
-			strcpy(str, c);
+			strcpy_s(str, c);
 	}
 };

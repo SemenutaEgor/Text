@@ -1,6 +1,7 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "ttext.h"
 #include "ttextlink.h"
-#include "tliststack.h"
+//#include "tliststack.h"
 #include <string>
 
 using namespace std;
@@ -39,7 +40,7 @@ void TText::GoPrevLink() {
 
 void TText::SetLine(string astr) {
 	if (!pCurr) throw - 1;
-	strcpy(pCurr->str, astr.c_str());
+	strcpy_s(pCurr->str, astr.c_str());
 }
 
 string TText::GetLine() {

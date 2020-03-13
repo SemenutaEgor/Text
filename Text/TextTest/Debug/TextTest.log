@@ -1,0 +1,5 @@
+﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  pch.cpp
+cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  test.cpp
+  TextTest.vcxproj -> D:\Входящие\УЧЕНИЕ\АИСД\4 семестр\Text\Text\Debug\TextTest.exe
