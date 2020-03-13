@@ -22,7 +22,7 @@ script: rake
 branches:
   only:
     - master
-    - 1.8.7
+    - tdd
 notifications:
   email:
     recipients:
