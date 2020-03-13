@@ -22,8 +22,7 @@ branches:
 notifications:
   email:
     recipients:
-      - brixen@gmail.com
-      - d.bussink@gmail.com
+      - e.semenuta99@gmail.com
     on_success: change
     on_failure: always
   irc:
