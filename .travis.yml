@@ -1,3 +1,4 @@
+apt-cache search --names-only llvm
 language: cpp
 compiler:
   - gcc
