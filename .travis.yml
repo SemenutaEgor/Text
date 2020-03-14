@@ -1,3 +1,14 @@
 language: cpp
-skript:
-   make && make test
+compiler:
+  - gcc
+  - clang
+before_script:
+  - mkdir ../build
+  - cd ../build
+script:
+  - cmake ../Text
+  - make -j
+  - ./Text/Text/ttext
+  - ./Text/TextTest/test
+notifications:
+  email: false
