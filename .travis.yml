@@ -9,7 +9,7 @@ before_install:
   - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get install -y llvm-3.5 llvm-3.5-dev; fi
   - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install llvm && brew link --force llvm; fi
   - rvm use $RVM --install --binary --fuzzy
-  - gem update --system
+  - gem update --system 2.0.0
   - gem --version
 before_script:
   - travis_retry bundle
