@@ -5,10 +5,10 @@ compiler:
 before_install:
   - chmod +x ./Text/Text/ttext.cpp
 before_script:
-  - cd ../Text
+  #- cd ../Text
 script:
   - make && make test
   - ./Text/Text/ttext.cpp
-  - ./Text/TextTest/test.cpp
+  #- ./Text/TextTest/test.cpp
 notifications:
   email: false
