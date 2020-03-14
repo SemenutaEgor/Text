@@ -3,10 +3,10 @@ compiler:
   - gcc
   - clang
 before_script:
-  - cd ../Text
+  #- cd ../Text
 script:
-  - make
-  - ./Text/Text/ttext
-  - ./Text/TextTest/test
+  - make && make test
+  - ./Text/Text/ttext.cpp
+  - ./Text/TextTest/test.cpp
 notifications:
   email: false
