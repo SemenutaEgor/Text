@@ -5,9 +5,8 @@ compiler:
 before_script:
   - cd ../Text
 script:
-  - cmake ../Text
   - make -j
-  - ./Text/Text/ttext
-  - ./Text/TextTest/test
+  - ./Text/Text/ttext.cpp
+  - ./Text/TextTest/test.cpp
 notifications:
   email: false
