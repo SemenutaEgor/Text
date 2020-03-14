@@ -7,7 +7,7 @@ before_install:
 before_script:
   #- cd ../Text
 script:
-  - make && make test
+  - make
   - ./Text/Text/ttext.cpp
   #- ./Text/TextTest/test.cpp
 notifications:
