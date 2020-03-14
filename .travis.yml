@@ -3,7 +3,6 @@ compiler:
   - gcc
   - clang
 before_script:
-  - mkdir ../Text
   - cd ../Text
 script:
   - cmake ../Text
