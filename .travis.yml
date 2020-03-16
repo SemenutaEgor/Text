@@ -1,14 +1,15 @@
 language: cpp
 compiler:
   - gcc
-  - clang
+  #- clang
 before_install:
-  - chmod +x ./Text/Text/ttext.cpp
+  - chmod +x ./Text/Text/main.cpp
 before_script:
   #- cd ../Text
 script:
-  - make
-  - ./Text/Text/ttext.cpp
+  echo Hello
+  #- ./Text/Text/main.cpp
+  #- ./Text/Text/ttext.cpp
   #- ./Text/TextTest/test.cpp
 notifications:
   email: false
