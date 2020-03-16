@@ -18,5 +18,19 @@
     <ClInclude Include="ttextlink.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tliststack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tstack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ttext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ttext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
