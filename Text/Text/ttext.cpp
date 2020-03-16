@@ -1,8 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "ttext.h"
-#include "ttextlink.h"
-//#include "tliststack.h"
+#include "..//Text/ttext.h"
+#include "..//Text/ttextlink.h"
 #include <string>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -32,13 +33,15 @@ void TText::GoNextLink() {
 	pCurr = pCurr->pNext;
 }
 
-void TText::GoPrevLink() {
+void TText::GoPrevLink()
+{
 	if (!pCurr) throw - 1;
 	if (stack.IsEmpty()) return;
 	pCurr = stack.Pop();
 }
 
-void TText::SetLine(string astr) {
+void TText::SetLine(string astr)
+{
 	if (!pCurr) throw - 1;
 	strcpy_s(pCurr->str, astr.c_str());
 }
@@ -90,4 +93,57 @@ void TText::DelDown() {
 	TTextLink* tmp = pCurr->pDown;
 	pCurr->pDown = tmp->pDown;
 	delete tmp;
+}
+
+void TText::Read(std::string fn)
+{
+	ifstream ifs(fn);
+	pFirst = ReadRec(ifs);
+}
+
+TTextLink* TText::ReadRec(ifstream& ifs)
+{
+	TTextLink *pHead, *pRC, *tmp;
+	pHead = pRC = NULL;
+	char tstr[81];
+	while (!ifs.eof())
+	{
+		ifs.getline(tstr, 80, '\n');
+		if (tstr[0] == '}')
+			break;
+		else
+			if (tstr[0] == '{')
+				pRC->pDown = ReadRec(ifs);
+			else
+			{
+				tmp = new TTextLink(tstr);
+				if (pHead == NULL)
+					pHead = pRC = tmp;
+				else
+				{
+					pRC->pNext = tmp;
+					pRC = pRC->pNext;
+				}
+			}
+	}
+	return pHead;
+}
+
+void TText::Write(std::string fn)
+{
+	ofstream ofs(fn);
+	WriteRec(ofs, pFirst);
+}
+
+void TText::WriteRec(ofstream& ofs, TTextLink* pWC)
+{
+	ofs << pWC->str << endl;
+	if (pWC->pDown)
+	{
+		ofs << '{' << endl;
+		WriteRec(ofs, pWC->pDown);
+		ofs << '}' << endl;
+	}
+	if (pWC->pDown)
+		WriteRec(ofs, pWC->pNext);
 }

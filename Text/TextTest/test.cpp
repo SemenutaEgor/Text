@@ -11,10 +11,9 @@ TEST(TextTest, can_create_text)
 }
 
 
-
-TEST(TextTest, can_add_string_into_current_position)
+/*TEST(TextTest, can_add_string_into_current_position)
 {
 	TText t;
 	string istr = "test string";
 	ASSERT_NO_THROW(t.SetLine(istr));
-}
+}*/
