@@ -144,6 +144,7 @@ void TText::WriteRec(ofstream& ofs, TTextLink* pWC)
 		WriteRec(ofs, pWC->pDown);
 		ofs << '}' << endl;
 	}
-	if (pWC->pDown)
+	if (!pWC->pDown)
 		WriteRec(ofs, pWC->pNext);
+
 }
