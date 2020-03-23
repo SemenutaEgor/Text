@@ -109,5 +109,9 @@ public:
 			tmp = pFirst;
 		}
 	}
+
+	bool GetSize() {
+		return size;
+	}
 };
 

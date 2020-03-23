@@ -5,8 +5,11 @@ class TStack {
 	T* arr;
 	int size;
 	int num;
+
 public:
-	TStack(int _size = 10) {         //конструктор
+
+	//constructor
+	TStack(int _size = 10) {         
 		if (_size <= 0) throw _size;
 		size = _size;
 		arr = new T[size];
@@ -50,6 +53,10 @@ public:
 	}
 	void Clear() {                   //Очистить стек
 		num = -1;
+	}
+
+	bool GetSize() {
+		return size;
 	}
 };
 #endif // !_TSTACK_

@@ -1,6 +1,6 @@
 #pragma once
 #include "ttextlink.h"
-#include "tliststack.h"
+#include "tstack.h"
 #include <string>
 
 class TText 
@@ -33,4 +33,10 @@ public:
 	TTextLink* ReadRec(std::ifstream& ifs); //readig lines from a file
 	void Write(std::string fn); //write to file
 	void WriteRec(std::ofstream& ofs, TTextLink* pWC); // recursive writing function
+
+	//Text navigetion methods
+
+	int Reset(); //set to first link
+	int IsEnd(); //end check
+	int GoNext(); // skip to the next link
 };

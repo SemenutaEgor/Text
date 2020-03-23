@@ -68,7 +68,7 @@ void TText::InsNextSection(string astr) {
 void TText::InsDownLine(string astr) {
 	if (!pCurr) throw - 1;
 	TTextLink *p = new TTextLink(astr.c_str());
-	p->pDown = pCurr->pNext;
+	p->pDown = pCurr->pDown;
 	pCurr->pDown = p;
 }
 
@@ -91,7 +91,7 @@ void TText::DelDown() {
 	if (!pCurr) throw - 1;
 	if (!pCurr->pNext) return;
 	TTextLink* tmp = pCurr->pDown;
-	pCurr->pDown = tmp->pDown;
+	pCurr->pDown = tmp->pNext;
 	delete tmp;
 }
 
@@ -146,4 +146,44 @@ void TText::WriteRec(ofstream& ofs, TTextLink* pWC)
 	}
 	if (pWC->pNext)
 		WriteRec(ofs, pWC->pNext);
+}
+
+int TText::Reset()
+{
+	while (!stack.IsEmpty()) {
+		stack.Pop();
+	}
+	pCurr = pFirst;
+	if (pCurr) {
+		stack.Push(pCurr);
+		if (pCurr->pNext) {
+			stack.Push(pCurr->pNext);
+		}
+		if (pCurr->pDown) {
+			stack.Push(pCurr->pDown);
+		}
+	}
+	return IsEnd();
+}
+
+int TText::IsEnd()
+{
+	return !stack.IsEmpty();
+}
+
+int TText::GoNext()
+{
+	if (IsEnd()) {
+		pCurr = stack.Pop();
+		if (pCurr != pFirst) {
+			if (pCurr->pNext) {
+				stack.Push(pCurr->pNext);
+			}
+			if (pCurr->pDown) {
+				stack.Push(pCurr->pDown);
+			}
+		}
+		return true;
+	}
+	return false;
 }
