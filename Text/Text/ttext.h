@@ -8,6 +8,7 @@ class TText
 	TTextLink *pFirst;
 	TTextLink *pCurr;
 	TStack<TTextLink*> stack;
+	//int recD;
 public:
 
 	TText(); //constructor

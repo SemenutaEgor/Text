@@ -103,17 +103,20 @@ void TText::Read(std::string fn)
 
 TTextLink* TText::ReadRec(ifstream& ifs)
 {
+	int count = 0;
 	TTextLink *pHead, *pRC, *tmp;
 	pHead = pRC = NULL;
 	char tstr[81];
 	while (!ifs.eof())
 	{
 		ifs.getline(tstr, 80, '\n');
-		if (tstr[0] == '}')
+		if (tstr[0] == '}') {
 			break;
+		}
 		else
-			if (tstr[0] == '{')
+			if (tstr[0] == '{') {
 				pRC->pDown = ReadRec(ifs);
+			}
 			else
 			{
 				tmp = new TTextLink(tstr);
@@ -125,6 +128,8 @@ TTextLink* TText::ReadRec(ifstream& ifs)
 					pRC = pRC->pNext;
 				}
 			}
+		if (!pRC->pDown) {
+		}
 	}
 	return pHead;
 }
@@ -140,9 +145,13 @@ void TText::WriteRec(ofstream& ofs, TTextLink* pWC)
 	ofs << pWC->str << endl;
 	if (pWC->pDown)
 	{
+		for (int i = pWC->recD; i > 0; i--) {
+			ofs << ' ';
+		}
 		ofs << '{' << endl;
 		WriteRec(ofs, pWC->pDown);
 		ofs << '}' << endl;
+
 	}
 	if (pWC->pNext)
 		WriteRec(ofs, pWC->pNext);
@@ -168,12 +177,12 @@ int TText::Reset()
 
 int TText::IsEnd()
 {
-	return !stack.IsEmpty();
+	return stack.IsEmpty();
 }
 
 int TText::GoNext()
 {
-	if (IsEnd()) {
+	if (!IsEnd()) {
 		pCurr = stack.Pop();
 		if (pCurr != pFirst) {
 			if (pCurr->pNext) {

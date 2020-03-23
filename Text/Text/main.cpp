@@ -11,7 +11,7 @@ int main() {
 	t.Read("textin.txt");
 	t.Write("textout.txt");
 	cout << endl << "printing iterator" << endl;
-	for (t.Reset(); t.IsEnd(); t.GoNext()) {
+	for (t.Reset(); !t.IsEnd(); t.GoNext()) {
 		cout << t.GetLine() << endl;
 	}
 }
