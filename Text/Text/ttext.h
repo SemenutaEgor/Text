@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _ttext_h_
+#define _ttext_h_
+
 #include "ttextlink.h"
 #include "tstack.h"
 #include <string>
@@ -8,6 +10,8 @@ class TText
 	TTextLink *pFirst;
 	TTextLink *pCurr;
 	TStack<TTextLink*> stack;
+	//int recD;
+
 public:
 
 	TText(); //constructor
@@ -40,3 +44,4 @@ public:
 	int IsEnd(); //end check
 	int GoNext(); // skip to the next link
 };
+#endif;
