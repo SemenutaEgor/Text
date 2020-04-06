@@ -103,7 +103,6 @@ void TText::Read(std::string fn)
 
 TTextLink* TText::ReadRec(ifstream& ifs)
 {
-	int count = 0;
 	TTextLink *pHead, *pRC, *tmp;
 	pHead = pRC = NULL;
 	char tstr[81];
@@ -120,8 +119,10 @@ TTextLink* TText::ReadRec(ifstream& ifs)
 			else
 			{
 				tmp = new TTextLink(tstr);
-				if (pHead == NULL)
+				if (pHead == NULL) {
+					//pRC->recD++;
 					pHead = pRC = tmp;
+				}
 				else
 				{
 					pRC->pNext = tmp;
@@ -145,9 +146,9 @@ void TText::WriteRec(ofstream& ofs, TTextLink* pWC)
 	ofs << pWC->str << endl;
 	if (pWC->pDown)
 	{
-		for (int i = pWC->recD; i > 0; i--) {
+		/*for (int i = pWC->recD; i > 0; i--) {
 			ofs << ' ';
-		}
+		}*/
 		ofs << '{' << endl;
 		WriteRec(ofs, pWC->pDown);
 		ofs << '}' << endl;
