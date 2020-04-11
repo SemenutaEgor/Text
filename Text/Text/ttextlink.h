@@ -4,7 +4,7 @@
 #include <string>
 
 #define TTextLineLength 80
-#define MemSize 20
+#define MemSize 100
 
 class TText;
 class TTextLink;

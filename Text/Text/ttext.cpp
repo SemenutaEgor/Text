@@ -150,16 +150,18 @@ void TText::WriteRec(ofstream& ofs, TTextLink* pWC)
 		ofs << " ";
 	}
 	ofs << pWC->str << endl;
-	recD++;
+	//recD++;
 	if (pWC->pDown)
 	{
+		recD++;
 		ofs << '{' << endl;
 		WriteRec(ofs, pWC->pDown);
 		ofs << '}' << endl;
-		recD--;
+		//recD--;
 	}
 	if (pWC->pNext) {
 		WriteRec(ofs, pWC->pNext);
+		recD++;
 	}
 	recD--;
 }
@@ -172,17 +174,19 @@ void TText::ConsolePrint() {
 void TText::ConsolePrintRec(TTextLink* pWC)
 {
 	for (int i = 0; i < recD; i++) {
-		cout << " ";
+		cout << "  ";
 	}
 	cout << pWC->str << endl;
-	recD++;
+	//recD++;
 	if (pWC->pDown)
 	{
+		recD++;
 		ConsolePrintRec(pWC->pDown);
-		recD--;
+		//recD--;
 	}
 	if (pWC->pNext) {
 		ConsolePrintRec(pWC->pNext);
+		recD++;
 	}
 	recD--;
 }
