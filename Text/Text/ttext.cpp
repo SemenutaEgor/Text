@@ -89,7 +89,7 @@ void TText::DelNext() {
 	delete tmp;
 }
 
-void TText::DelDown() {
+void TText::DelDownLine() {
 	if (!pCurr) throw - 1;
 	if (!pCurr->pNext) return;
 	TTextLink* tmp = pCurr->pDown;
