@@ -25,10 +25,12 @@ void TTextLink::InitMemSystem(int size) {
 
 void TTextLink::PintFreeLink(void) {
 	std::cout << "List of free links" << std::endl;
-
+	int count = 0;
 	for (TTextLink* pLink = MemHeader.pFree; pLink != NULL; pLink = pLink->pNext) {
 		std::cout << pLink->str << std::endl;
+		count++;
 	}
+	std::cout << count << std::endl;
 }
 
 void * TTextLink::operator new(size_t size) {
