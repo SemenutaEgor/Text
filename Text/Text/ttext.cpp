@@ -7,6 +7,8 @@
 
 using namespace std;
 
+static int recD; //recursion depth
+
 TText::TText()
 {
 	pFirst = NULL;
@@ -98,6 +100,7 @@ void TText::DelDown() {
 void TText::Read(std::string fn)
 {
 	ifstream ifs(fn);
+	recD = 0;
 	pFirst = ReadRec(ifs);
 }
 
@@ -120,7 +123,6 @@ TTextLink* TText::ReadRec(ifstream& ifs)
 			{
 				tmp = new TTextLink(tstr);
 				if (pHead == NULL) {
-					//pRC->recD++;
 					pHead = pRC = tmp;
 				}
 				else
@@ -138,24 +140,51 @@ TTextLink* TText::ReadRec(ifstream& ifs)
 void TText::Write(std::string fn)
 {
 	ofstream ofs(fn);
+	recD = 0;
 	WriteRec(ofs, pFirst);
 }
 
 void TText::WriteRec(ofstream& ofs, TTextLink* pWC)
 {
+	for (int i = 0; i < recD; i++) {
+		ofs << " ";
+	}
 	ofs << pWC->str << endl;
+	recD++;
 	if (pWC->pDown)
 	{
-		/*for (int i = pWC->recD; i > 0; i--) {
-			ofs << ' ';
-		}*/
 		ofs << '{' << endl;
 		WriteRec(ofs, pWC->pDown);
 		ofs << '}' << endl;
-
+		recD--;
 	}
-	if (pWC->pNext)
+	if (pWC->pNext) {
 		WriteRec(ofs, pWC->pNext);
+	}
+	recD--;
+}
+
+void TText::ConsolePrint() {
+	recD = 0;
+	ConsolePrintRec(pFirst);
+}
+
+void TText::ConsolePrintRec(TTextLink* pWC)
+{
+	for (int i = 0; i < recD; i++) {
+		cout << " ";
+	}
+	cout << pWC->str << endl;
+	recD++;
+	if (pWC->pDown)
+	{
+		ConsolePrintRec(pWC->pDown);
+		recD--;
+	}
+	if (pWC->pNext) {
+		ConsolePrintRec(pWC->pNext);
+	}
+	recD--;
 }
 
 int TText::Reset()

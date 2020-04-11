@@ -10,7 +10,6 @@ class TText
 	TTextLink *pFirst;
 	TTextLink *pCurr;
 	TStack<TTextLink*> stack;
-	//int recD;
 
 public:
 
@@ -37,6 +36,8 @@ public:
 	TTextLink* ReadRec(std::ifstream& ifs); //readig lines from a file
 	void Write(std::string fn); //write to file
 	void WriteRec(std::ofstream& ofs, TTextLink* pWC); // recursive writing function
+	void ConsolePrint(); //write to console
+	void ConsolePrintRec(TTextLink* pWC); // recursive printing function to console
 
 	//Text navigetion methods
 

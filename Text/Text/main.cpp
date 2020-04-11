@@ -6,6 +6,8 @@
 
 using namespace std;
 
+
+
 TTextMem TTextLink::MemHeader;
 
 int main() {
@@ -13,6 +15,7 @@ int main() {
 	TText t;
 	t.Read("textin.txt");
 	t.Write("textout.txt");
+	t.ConsolePrint();
 	cout << endl << "printing iterator" << endl;
 	for (t.Reset(); !t.IsEnd(); t.GoNext()) {
 		cout << t.GetLine() << endl;
