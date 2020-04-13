@@ -28,7 +28,7 @@ void TTextLink::PintFreeLink(void) {
 	int count = 0;
 	for (TTextLink* pLink = MemHeader.pFree; pLink != NULL; pLink = pLink->pNext) {
 		std::cout << pLink->str << std::endl;
-		count++;
+			count++;
 	}
 	std::cout << count << std::endl;
 }
@@ -48,6 +48,7 @@ void TTextLink::operator delete(void * pM) {
 }
 
 void TTextLink::MemCleaner(TText& txt) {
+
 	for (txt.Reset(); !txt.IsEnd(); txt.GoNext()) {
 		std::string tmp = "&&&";
 		tmp += txt.GetLine();
@@ -61,7 +62,7 @@ void TTextLink::MemCleaner(TText& txt) {
 	}
 
 	//garbage collection
-	for (pLink = MemHeader.pFirst; pLink != NULL; pLink = pLink->pNext) {
+	for (pLink = MemHeader.pFirst; pLink <= MemHeader.pLast; pLink++) {
 		//text line or free link
 		if (std::strstr(pLink->str, "&&&") != NULL) {
 			std::strcpy(pLink->str, pLink->str + 3); //unmarking

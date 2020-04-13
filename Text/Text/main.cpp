@@ -96,7 +96,7 @@ void TextMenu(TText &txt) {
 			txt.InsNextSection(st);
 		}
 		if (com == "free") {
-			TTextLink::MemCleaner(txt);
+			//TTextLink::MemCleaner(txt);
 			TTextLink::PintFreeLink();
 		}
 		if (com == "help") {
@@ -144,7 +144,7 @@ void TextMenu(TText &txt) {
 }
 
 int main() {
-	TTextLink::InitMemSystem(20);
+	TTextLink::InitMemSystem(100);
 	TText t;
 	t.Read("textin.txt");
 	t.Write("textout.txt");
