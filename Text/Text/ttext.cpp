@@ -1,3 +1,5 @@
+//ttext.cpp
+
 #define _CRT_SECURE_NO_WARNINGS
 #include "..//Text/ttext.h"
 #include "..//Text/ttextlink.h"
@@ -7,16 +9,14 @@
 
 using namespace std;
 
-static int recD; //recursion depth
+static int recD;
 
-TText::TText()
-{
+TText::TText() {
 	pFirst = NULL;
 	TStack<TTextLink> stack;
 }
 
-void TText::GoFirstLink()
-{
+void TText::GoFirstLink() {
 	pCurr = pFirst;
 	stack.Clear();
 }
@@ -35,15 +35,13 @@ void TText::GoNextLink() {
 	pCurr = pCurr->pNext;
 }
 
-void TText::GoPrevLink()
-{
+void TText::GoPrevLink() {
 	if (!pCurr) throw - 1;
 	if (stack.IsEmpty()) return;
 	pCurr = stack.Pop();
 }
 
-void TText::SetLine(string astr)
-{
+void TText::SetLine(string astr) {
 	if (!pCurr) throw - 1;
 	strcpy_s(pCurr->str, astr.c_str());
 }
@@ -97,20 +95,17 @@ void TText::DelDownLine() {
 	delete tmp;
 }
 
-void TText::Read(std::string fn)
-{
+void TText::Read(std::string fn) {
 	ifstream ifs(fn);
 	recD = 0;
 	pFirst = ReadRec(ifs);
 }
 
-TTextLink* TText::ReadRec(ifstream& ifs)
-{
+TTextLink* TText::ReadRec(ifstream& ifs) {
 	TTextLink *pHead, *pRC, *tmp;
 	pHead = pRC = NULL;
 	char tstr[81];
-	while (!ifs.eof())
-	{
+	while (!ifs.eof()) {
 		ifs.getline(tstr, 80, '\n');
 		if (tstr[0] == '}') {
 			break;
@@ -119,14 +114,12 @@ TTextLink* TText::ReadRec(ifstream& ifs)
 			if (tstr[0] == '{') {
 				pRC->pDown = ReadRec(ifs);
 			}
-			else
-			{
+			else {
 				tmp = new TTextLink(tstr);
 				if (pHead == NULL) {
 					pHead = pRC = tmp;
 				}
-				else
-				{
+				else {
 					pRC->pNext = tmp;
 					pRC = pRC->pNext;
 				}
@@ -137,27 +130,23 @@ TTextLink* TText::ReadRec(ifstream& ifs)
 	return pHead;
 }
 
-void TText::Write(std::string fn)
-{
+void TText::Write(std::string fn) {
 	ofstream ofs(fn);
 	recD = 0;
 	WriteRec(ofs, pFirst);
 }
 
-void TText::WriteRec(ofstream& ofs, TTextLink* pWC)
-{
+void TText::WriteRec(ofstream& ofs, TTextLink* pWC) {
 	for (int i = 0; i < recD; i++) {
 		ofs << " ";
 	}
 	ofs << pWC->str << endl;
-	//recD++;
-	if (pWC->pDown)
-	{
+
+	if (pWC->pDown) {
 		recD++;
 		ofs << '{' << endl;
 		WriteRec(ofs, pWC->pDown);
 		ofs << '}' << endl;
-		//recD--;
 	}
 	if (pWC->pNext) {
 		WriteRec(ofs, pWC->pNext);
@@ -171,18 +160,17 @@ void TText::ConsolePrint() {
 	ConsolePrintRec(pFirst);
 }
 
-void TText::ConsolePrintRec(TTextLink* pWC)
-{
+void TText::ConsolePrintRec(TTextLink* pWC) {
 	for (int i = 0; i < recD; i++) {
 		cout << "  ";
 	}
 	cout << pWC->str << endl;
-	//recD++;
+
 	if (pWC->pDown)
 	{
 		recD++;
 		ConsolePrintRec(pWC->pDown);
-		//recD--;
+
 	}
 	if (pWC->pNext) {
 		ConsolePrintRec(pWC->pNext);
@@ -191,8 +179,7 @@ void TText::ConsolePrintRec(TTextLink* pWC)
 	recD--;
 }
 
-int TText::Reset()
-{
+int TText::Reset() {
 	while (!stack.IsEmpty()) {
 		stack.Pop();
 	}
@@ -209,13 +196,11 @@ int TText::Reset()
 	return IsEnd();
 }
 
-int TText::IsEnd()
-{
+int TText::IsEnd() {
 	return stack.IsEmpty();
 }
 
-int TText::GoNext()
-{
+int TText::GoNext() {
 	if (!IsEnd()) {
 		pCurr = stack.Pop();
 		if (pCurr != pFirst) {
